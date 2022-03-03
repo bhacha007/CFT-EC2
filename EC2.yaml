@@ -25,6 +25,12 @@ Resources:
       - IpProtocol: tcp
         FromPort: 22
         ToPort: 22
+        CidrIp: 0.0.0.0/
+      SecurityGroupEgress:
+      - IpProtocol: All
+        FromPort: All
+        ToPort: All
+        CidrIp: 0.0.0.0/0
       GroupDescription: "SG for SSH "
   HttpSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
@@ -33,4 +39,10 @@ Resources:
       - IpProtocol: tcp
         FromPort: 80
         ToPort: 80
+        CidrIp: 0.0.0.0/0
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CiderIp: 172.31.12.248
       GroupDescription: "SG for HTTP "

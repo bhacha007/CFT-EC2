@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: "ami-0c6615d1e95c98aca"
+      InstanceType: t2.micro
+      KeyName: ec2-instance
+      SecurityGroups: 
+      - !Ref SshSecurityGroup
+      - !Ref HttpSecurityGroup
+      UserData: 
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          sudo systemctl start httpd
+          sudo systemctl enable httpd
+          echo "Hello World from $(hostname -f)" > /var/www/html/index.html
+  SshSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+      GroupDescription: "SG for SSH "
+  HttpSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+      GroupDescription: "SG for HTTP "

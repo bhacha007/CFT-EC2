@@ -8,8 +8,8 @@ Resources:
       InstanceType: t2.micro
       KeyName: ec2-instance
       SecurityGroups: 
-      - !Ref SshSecurityGroup
-      - !Ref HttpSecurityGroup
+      - !Ref SshSecurityGroup.GroupId
+      - !Ref HttpSecurityGroup.GroupId
       UserData: 
         Fn::Base64: !Sub |
           #!/bin/bash

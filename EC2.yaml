@@ -46,5 +46,5 @@ Resources:
       - IpProtocol: tcp
         FromPort: 80
         ToPort: 80
-        CidrIp: 172.31.12.248
+        CidrIp: 0.0.0.0/0
       GroupDescription: "SG for HTTP "

@@ -7,9 +7,9 @@ Resources:
       ImageId: "ami-0c6615d1e95c98aca"
       InstanceType: t2.micro
       KeyName: ec2-instance
-      SecurityGroups: 
-      - !Ref SshSecurityGroup.GroupId
-      - !Ref HttpSecurityGroup.GroupId
+      SecurityGroupIds: 
+      - !GetAtt SshSecurityGroup.GroupId
+      - !GetAtt HttpSecurityGroup.GroupId
       UserData: 
         Fn::Base64: !Sub |
           #!/bin/bash

@@ -21,6 +21,7 @@ Resources:
   SshSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
+      VpcId: vpc-6a78ba01
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: 22
@@ -35,6 +36,7 @@ Resources:
   HttpSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
+      VpcId: vpc-6a78ba01
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: 80
